@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <!-- Estatery mark: the house outline around the "E" from the wordmark -->
+  <rect width="64" height="64" rx="14" fill="#1C1915"/>
+  <path d="M50 36V25.5L32 11 14 25.5V52h36" stroke="#fff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M36 29H23v18h13M23 38h11" stroke="#fff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

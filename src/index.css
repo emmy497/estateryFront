@@ -1,0 +1,158 @@
+body {
+  font-family: "Inter", sans-serif;
+  color: #111418;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Warm walnut wash over uploaded property photos, so listings share the
+   site's soft brown palette whatever lighting they were shot in. The
+   overlay is a ::before so badges and buttons placed after the image
+   still sit on top of it. */
+.photo-tint {
+  position: relative;
+  isolation: isolate;
+}
+
+.photo-tint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(139, 107, 78, 0.18) 0%,
+    rgba(110, 80, 52, 0.32) 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+.photo-tint img {
+  filter: sepia(0.18) saturate(0.92) contrast(0.98);
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);   }
+}
+
+@keyframes dropdownIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.animate-backdrop-in {
+  animation: backdropIn 0.2s ease both;
+}
+
+.animate-modal-in {
+  animation: modalIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-dropdown-in {
+  animation: dropdownIn 0.15s ease both;
+}
+
+/* Map search: muted basemap so pins and the site palette stand out */
+.estatery-map .leaflet-tile-pane {
+  filter: grayscale(0.9) sepia(0.12) contrast(0.92) brightness(1.04);
+}
+
+/* price pills instead of default pins */
+.map-pill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -100%);
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1C1915;
+  font: 600 13px/1.2 "Inter", sans-serif;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(28, 25, 21, 0.22);
+  border: 1px solid #E2DDD6;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.map-pill::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+  border-right: 1px solid #E2DDD6;
+  border-bottom: 1px solid #E2DDD6;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.map-pill.is-active {
+  background: #1C1915;
+  color: #ffffff;
+  border-color: #1C1915;
+  transform: translate(-50%, -100%) scale(1.08);
+}
+
+.map-pill.is-active::after {
+  border-color: #1C1915;
+}
+
+.estatery-popup .leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px -12px rgba(17, 20, 24, 0.35);
+}
+
+.estatery-popup .leaflet-popup-content {
+  margin: 0;
+  width: 240px !important;
+  font-family: "Inter", sans-serif;
+}
+
+/* Leaflet colours every link blue; popups use the site's text colours */
+.leaflet-container .estatery-popup a,
+.leaflet-container .estatery-popup a:hover {
+  color: #111418;
+}
+
+/* readable on both a photo and a plain white header */
+.estatery-popup .leaflet-popup-close-button {
+  z-index: 3;
+  top: 6px !important;
+  right: 6px !important;
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92) !important;
+  color: #1C1915 !important;
+  font: 400 18px/22px "Inter", sans-serif !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+/* hide the scrollbar on horizontally scrolling image strips */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
